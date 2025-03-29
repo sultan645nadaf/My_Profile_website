@@ -1,0 +1,241 @@
+/* Animated Background */
+@keyframes gradientMove {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+body {
+    background: linear-gradient(-45deg, #1a1a1a, #2b1055, #7597de, #222);
+    background-size: 400% 400%;
+    animation: gradientMove 10s ease infinite;
+    font-family: 'Poppins', sans-serif;
+    color: white;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Projects Section */
+.projects-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 30px;
+    padding: 50px;
+    max-width: 1200px;
+    margin: auto;
+    justify-content: center;
+    position: relative;
+    opacity: 0;
+    transform: scale(0.8);
+    transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+}
+
+/* Project Card */
+.project-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(12px);
+    border-radius: 15px;
+    padding: 25px;
+    transition: all 0.4s ease-in-out;
+    text-align: center;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Project Title */
+.project-card h3 {
+    font-size: 1.6rem;
+    color: white;
+    margin-bottom: 12px;
+}
+
+/* Hover Effects */
+.project-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0px 12px 24px rgba(255, 255, 255, 0.3);
+}
+
+/* Folder Tab */
+.project-card::before {
+    content: "";
+    position: absolute;
+    top: -5px;
+    left: 15px;
+    width: 60px;
+    height: 14px;
+    background: #f4b400;
+    border-radius: 6px 6px 0 0;
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Project Information */
+.project-info {
+    background: rgba(0, 0, 0, 0.7); /* Dark transparent background */
+    padding: 15px;
+    border-radius: 6px;
+    font-size: 1rem;
+    color: #f1f1f1; /* Lighter text for readability */
+    box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+}
+
+/* Tech Icons */
+.tech-icons {
+    display: flex;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+.tech-icons img {
+    width: 28px;
+    height: 28px;
+}
+
+/* GitHub Button */
+.github-link {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.github-link a {
+    display: inline-block;
+    background: #0078ff;
+    color: white;
+    padding: 12px 18px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background 0.3s ease;
+}
+
+.github-link a:hover {
+    background: #005ecb;
+}
+
+/* Projects Visible Class */
+.projects-container.projects-visible {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.projects-container.projects-visible .project-card {
+    position: relative;
+    transform: scale(1) rotate(0deg) translate(0, 0);
+    opacity: 1;
+}
+body {
+    background: #121212;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+.projects {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+}
+
+.projects h2 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+    z-index: 10; /* Ensure it's above other elements */
+}
+
+.projects h2.clicked {
+    opacity: 0;
+    transform: translate(-50%, -50%) translateY(-50px);
+}
+
+.project-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 1200px;
+    gap: 20px;
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
+}
+
+.project-grid.visible {
+    opacity: 1;
+}
+
+.project-card {
+    width: 300px;
+    background: #222;
+    color: white;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.1);
+    transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.project-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0px 8px 20px rgba(255, 255, 255, 0.2);
+}
+
+.project-card h3 {
+    color: #ffcc00;
+    font-size: 1.4rem;
+    font-weight: bold;
+}
+
+.tech-icons i {
+    color: #ffcc00;
+    font-size: 20px;
+    margin-right: 8px;
+}
+
+.files {
+    margin-top: 10px;
+}
+
+.file {
+    background: #ffffff;
+    color: black;
+    padding: 8px;
+    margin: 5px 0;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    text-align: center;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+.github-link {
+    margin-top: 10px;
+    text-align: center;
+}
+
+.github-link a {
+    color: #ffcc00;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.github-link a:hover {
+    text-decoration: underline;
+}

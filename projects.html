@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Projects</title>
+    <link rel="stylesheet" href="css/projects.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    
+</head>
+<body>
+    <section class="projects">
+        <div class="project-title-card">
+            <div class="project-title-container">
+                <h2>My Projects</h2>
+            </div>
+        </div>
+        <div class="project-grid">
+            <div class="project-card">
+                <div class="project-info">
+                    <h3>Dental Defect Detection</h3>
+                    <div class="tech-icons">
+                        <i class="fa-brands fa-python"></i>
+                        <i class="fa-brands fa-js"></i>
+                        <i class="fa-brands fa-apple"></i>
+                        <i class="fa-brands fa-html5"></i>
+                    </div>
+                    <div class="files">
+                        <div class="file">model.py</div>
+                        <div class="file">index.html</div>
+                        <div class="file">app.js</div>
+                    </div>
+                    <div class="github-link">
+                        <a href="https://github.com/sultan645nadaf/Dental-app.git" target="_blank">View on GitHub</a>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-info">
+                    <h3>Hadoop Data Processing</h3>
+                    <div class="tech-icons">
+                        <i class="fa-brands fa-java"></i>
+                        <i class="fa-brands fa-docker"></i>
+                        <i class="fa-brands fa-linux"></i>
+                    </div>
+                    <div class="files">
+                        <div class="file">main.java</div>
+                        <div class="file">data.txt</div>
+                        <div class="file">process.py</div>
+                    </div>
+                    <div class="github-link">
+                        <a href="#" target="_blank">View on GitHub</a>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-info">
+                    <h3>Flutter Mobile App</h3>
+                    <div class="tech-icons">
+                        <i class="fa-brands fa-flutter"></i>
+                        <i class="fa-brands fa-dart"></i>
+                        <i class="fa-brands fa-android"></i>
+                        <i class="fa-brands fa-apple"></i>
+                    </div>
+                    <div class="files">
+                        <div class="file">main.dart</div>
+                        <div class="file">pubspec.yaml</div>
+                        <div class="file">home.dart</div>
+                    </div>
+                    <div class="github-link">
+                        <a href="https://github.com/sultan645nadaf/Rentalapp.git" target="_blank">View on GitHub</a>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-info">
+                    <h3>Rental Management App</h3>
+                    <div class="tech-icons">
+                        <i class="fa-brands fa-flutter"></i>
+                        <i class="fa-brands fa-dart"></i>
+                        <i class="fa-brands fa-android"></i>
+                        <i class="fa-solid fa-database"></i>
+                        <i class="fa-brands fa-firebase"></i>
+                    </div>
+                    <div class="files">
+                        <div class="file">rental.dart</div>
+                        <div class="file">database.sql</div>
+                        <div class="file">firebase_config.dart</div>
+                    </div>
+                    <div class="github-link">
+                        <a href="https://github.com/sultan645nadaf/Rentalapp.git" target="_blank">View on GitHub</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="js/projects.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const title = document.querySelector(".projects h2");
+            const projectGrid = document.querySelector(".project-grid");
+
+            title.addEventListener("click", (event) => {
+                if (!event.target.closest("a")) {
+                    title.classList.add("clicked");
+                    projectGrid.classList.add("visible");
+                }
+            });
+        });
+    </script>
+</body>
+</html>
