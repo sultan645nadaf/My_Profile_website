@@ -37,6 +37,26 @@
             opacity: 1;
             transform: translateY(0);
         }
+
+        .view-counter-container {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+        }
+
+        .view-counter-container i {
+            font-size: 16px;
+            color: gold;
+        }
     </style>
 </head>
 <body>
@@ -82,10 +102,30 @@
             </div>
         </div>
         
+        <div class="view-counter-container">
+            <i class="bi bi-eye"></i>
+            <span id="view-counter">0</span>
+        </div>
     </section>
 
     <script src="js/script.js"></script>
     <script src="js/particles.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const lastVisit = localStorage.getItem("lastVisit");
+            const currentTime = new Date().getTime();
+            const oneDay = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
+
+            if (!lastVisit || (currentTime - lastVisit) > oneDay) {
+                let views = localStorage.getItem("viewCount") || 0;
+                views++;
+                localStorage.setItem("viewCount", views);
+                localStorage.setItem("lastVisit", currentTime); // Store last visit time
+            }
+
+            document.getElementById("view-counter").innerText = "Views: " + localStorage.getItem("viewCount");
+        });
+    </script>
 
 </body>
 </html>
