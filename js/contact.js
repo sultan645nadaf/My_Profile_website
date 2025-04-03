@@ -6,20 +6,26 @@ try {
     document.getElementById("contact-form").addEventListener("submit", function(event) {
         event.preventDefault();  // Prevent the default form submission
 
-        // Get form values
-        const name = document.getElementById("name").value;
-        const email = document.getElementById("email").value;
-        const message = document.getElementById("message").value;
+        // Get form elements
+        const name = document.getElementById("name").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const message = document.getElementById("message").value.trim();
         const formStatus = document.getElementById("form-status");
+        const submitButton = document.getElementById("submit-button");
 
-        // Validate form fields
+        // Validate email format
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!name || !email || !message) {
             formStatus.innerHTML = "<p class='error'>Please fill in all fields.</p>";
             return;
+        } else if (!emailPattern.test(email)) {
+            formStatus.innerHTML = "<p class='error'>Please enter a valid email address.</p>";
+            return;
         }
 
-        // Show loading status
+        // Show loading status and disable inputs
         formStatus.innerHTML = "<p>Sending your message...</p>";
+        submitButton.disabled = true;
 
         // Prepare the email data
         const emailData = {
@@ -34,10 +40,18 @@ try {
             .then(function(response) {
                 console.log("Success:", response);
                 formStatus.innerHTML = "<p class='success'>Your message has been sent successfully!</p>";
+                document.getElementById("contact-form").reset();
             })
             .catch(function(error) {
                 console.error("Error:", error);
-                formStatus.innerHTML = "<p class='error'>There was an error sending your message. Please try again later.</p>";
+                formStatus.innerHTML = `<p class='error'>Failed to send message. ${error.text || "Please try again later."}</p>`;
+            })
+            .finally(() => {
+                submitButton.disabled = false;
+                // Clear status message after 5 seconds
+                setTimeout(() => {
+                    formStatus.innerHTML = "";
+                }, 5000);
             });
     });
 

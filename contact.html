@@ -45,29 +45,34 @@
         // Initialize EmailJS with the correct Public Key
         emailjs.init("your_public_key_here");  // Replace with your actual EmailJS Public Key
 
-        // Handle form submission
         document.getElementById("contact-form").addEventListener("submit", function(event) {
-            event.preventDefault();  // Prevent the default form submission
+            event.preventDefault();  // Prevent default form submission
 
-            // Get form values
-            const name = document.getElementById("name").value;
-            const email = document.getElementById("email").value;
-            const message = document.getElementById("message").value;
+            // Get form elements
+            const name = document.getElementById("name").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const message = document.getElementById("message").value.trim();
             const formStatus = document.getElementById("form-status");
+            const submitButton = document.querySelector("button[type='submit']");
 
-            // Validate form fields
+            // Validate email format
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if (!name || !email || !message) {
                 formStatus.innerHTML = "<p class='error'>Please fill in all fields.</p>";
                 return;
+            } else if (!emailPattern.test(email)) {
+                formStatus.innerHTML = "<p class='error'>Please enter a valid email address.</p>";
+                return;
             }
 
-            // Show loading status
+            // Show loading state
             formStatus.innerHTML = "<p>Sending your message...</p>";
+            submitButton.disabled = true;
 
             // Prepare the email data
             const emailData = {
                 name: name,
-                title: "User Inquiry", // Added title as required by EmailJS template
+                title: "User Inquiry",
                 email: email,
                 message: message
             };
@@ -77,10 +82,17 @@
                 .then(function(response) {
                     console.log("Success:", response);
                     formStatus.innerHTML = "<p class='success'>Your message has been sent successfully!</p>";
+                    document.getElementById("contact-form").reset();
                 })
                 .catch(function(error) {
                     console.error("Error:", error);
-                    formStatus.innerHTML = "<p class='error'>There was an error sending your message. Please try again later.</p>";
+                    formStatus.innerHTML = `<p class='error'>Failed to send message. ${error.text || "Please try again later."}</p>`;
+                })
+                .finally(() => {
+                    submitButton.disabled = false;
+                    setTimeout(() => {
+                        formStatus.innerHTML = "";
+                    }, 5000);
                 });
         });
     </script>

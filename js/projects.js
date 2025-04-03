@@ -3,11 +3,15 @@ document.addEventListener("DOMContentLoaded", () => {
     const projectGrid = document.querySelector(".project-grid");
     const projects = document.querySelectorAll(".project-card");
 
-    // Initialize scattered effect with a more dynamic spread
+    // Enable scrolling inside the project grid
+    projectGrid.style.overflowY = "auto";
+    projectGrid.style.maxHeight = "80vh"; // Ensures it doesn't take full screen
+
+    // Improved scattered effect for dynamic yet controlled layout
     projects.forEach((project) => {
-        const randomX = (Math.random() - 0.5) * 600; // Increased scatter range
-        const randomY = (Math.random() - 0.5) * 600;
-        const randomRotate = (Math.random() - 0.5) * 80; // More rotation variation
+        const randomX = (Math.random() - 0.5) * 400;
+        const randomY = (Math.random() - 0.5) * 400;
+        const randomRotate = (Math.random() - 0.5) * 60;
 
         project.style.transform = `translate(${randomX}px, ${randomY}px) rotate(${randomRotate}deg)`;
         project.style.opacity = "0";
@@ -18,16 +22,16 @@ document.addEventListener("DOMContentLoaded", () => {
         title.classList.add("clicked");
         projectGrid.classList.add("visible");
 
-        // Animate cards to settle into position with bounce effect
+        // Animate project cards into position with refined bounce effect
         projects.forEach((project, index) => {
             setTimeout(() => {
-                project.style.transform = "translate(0, 0) rotate(0deg) scale(1.05)";
+                project.style.transform = "translate(0, 0) rotate(0deg) scale(1.07)";
                 project.style.opacity = "1";
 
                 setTimeout(() => {
                     project.style.transform = "translate(0, 0) rotate(0deg) scale(1)";
-                }, 200); // Subtle bounce effect
-            }, index * 150); // Stagger animation
+                }, 250);
+            }, index * 130);
         });
     });
 
@@ -37,12 +41,12 @@ document.addEventListener("DOMContentLoaded", () => {
         if (hoverElement) {
             project.addEventListener("mouseenter", () => {
                 hoverElement.style.opacity = "1";
-                hoverElement.style.transition = "opacity 0.3s ease";
+                hoverElement.style.transition = "opacity 0.25s ease";
             });
 
             project.addEventListener("mouseleave", () => {
                 hoverElement.style.opacity = "0";
-                hoverElement.style.transition = "opacity 0.3s ease";
+                hoverElement.style.transition = "opacity 0.25s ease";
             });
         }
 
@@ -51,10 +55,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
             document.querySelectorAll(".project-card").forEach((p) => {
                 p.classList.remove("expanded");
+                p.style.transform = "scale(1)";
             });
 
             if (!isExpanded) {
                 project.classList.add("expanded");
+                project.style.transform = "scale(1.1)";
             }
         });
     });

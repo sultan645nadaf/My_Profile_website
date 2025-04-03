@@ -2,11 +2,18 @@
 body {
     margin: 0;
     padding: 0;
-    font-family: 'Poppins', sans-serif;
-    background-color: #0d1117;
+    font-family: 'Inter', sans-serif;
+    background: linear-gradient(120deg, #0f0f0f, #1c1c3c, #3a3a6a);
+    background-size: 200% 200%;
+    animation: gradientMove 8s infinite alternate;
     color: white;
     text-align: center;
     overflow-x: hidden;
+}
+
+@keyframes gradientMove {
+    0% { background-position: left; }
+    100% { background-position: right; }
 }
 
 /* Particle.js Background */
@@ -34,12 +41,21 @@ header p {
 
 /* Profile Card */
 .profile-card {
+    position: relative;
     background: rgba(255, 255, 255, 0.1);
     padding: 20px;
-    border-radius: 10px;
+    border-radius: 16px;
     display: inline-block;
     margin-top: 20px;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 5px 15px rgba(0, 255, 255, 0.2);
+    transition: all 0.4s ease-in-out;
+}
+
+.profile-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 255, 255, 0.3);
 }
 
 .profile-card img {
@@ -47,11 +63,27 @@ header p {
     height: 120px;
     border-radius: 50%;
     border: 3px solid #00ffcc;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+    transition: all 0.5s ease-in-out;
 }
 
-.profile-card h2 {
-    margin-top: 10px;
-    font-size: 1.8rem;
+/* Move Profile Image to Top Right on Navigation */
+.profile-card.moved {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    width: 70px;
+    height: 70px;
+    padding: 8px;
+    background: transparent;
+    transition: all 0.3s ease-in-out;
+}
+
+.profile-card.moved img {
+    width: 50px;
+    height: 50px;
+    border-width: 2px;
+    transition: all 0.3s ease-in-out;
 }
 
 /* Social Icons */
@@ -61,14 +93,15 @@ header p {
 
 .social-icons a {
     color: white;
-    font-size: 1.8rem;
+    font-size: 2rem;
     margin: 0 10px;
-    transition: transform 0.3s ease-in-out;
+    transition: transform 0.3s ease-in-out, color 0.3s ease-in-out;
 }
 
 .social-icons a:hover {
-    transform: scale(1.2);
+    transform: scale(1.3);
     color: #00ffcc;
+    text-shadow: 0px 0px 10px rgba(0, 255, 255, 0.6);
 }
 
 /* Floating Bubbles */
@@ -103,13 +136,14 @@ header p {
 /* Floating Animation */
 @keyframes float {
     0% { transform: translateY(0px); }
-    50% { transform: translateY(-10px); }
+    50% { transform: translateY(-8px); }
     100% { transform: translateY(0px); }
 }
 
 .floating {
-    animation: float 3s infinite ease-in-out;
+    animation: float 2.5s infinite ease-in-out;
 }
+
 /* Preloader Styles */
 #preloader {
     position: fixed;
@@ -129,7 +163,7 @@ header p {
     border: 6px solid rgba(0, 255, 204, 0.2);
     border-top-color: #00ffcc;
     border-radius: 50%;
-    animation: spin 1s linear infinite;
+    animation: spin 1s ease-in-out infinite;
 }
 
 @keyframes spin {
@@ -141,6 +175,7 @@ header p {
 .hide-preloader {
     opacity: 0;
     visibility: hidden;
+    transition: opacity 0.6s ease-out, visibility 0.6s ease-out;
 }
 
 #particles-js {
@@ -150,4 +185,31 @@ header p {
     top: 0;
     left: 0;
     z-index: -1; /* Behind other content */
+}
+
+/* Moving Colorful Rectangles */
+.moving-rectangle {
+    position: absolute;
+    width: 50px;
+    height: 20px;
+    background-color: red;
+    opacity: 0.7;
+    border-radius: 4px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    transition: transform 0.3s ease-in-out;
+    animation: moveRight 10s linear infinite;
+}
+
+@keyframes moveRight {
+    0% {
+        transform: translateX(-100px);
+    }
+    100% {
+        transform: translateX(100vw);
+    }
+}
+
+.moving-rectangle:hover {
+    transform: translateX(50px);
+    opacity: 1;
 }
