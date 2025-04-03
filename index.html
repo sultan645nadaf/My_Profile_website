@@ -112,18 +112,24 @@
     <script src="js/particles.js"></script>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
+            // Fetch total unique views from backend
+            fetch("http://localhost:3000/get-views")
+                .then(response => response.json())
+                .then(data => {
+                    document.getElementById("view-counter").innerText = "Views: " + data.total_views;
+                })
+                .catch(error => console.error("❌ Error fetching views:", error));
+
+            // Track unique views (once per day)
             const lastVisit = localStorage.getItem("lastVisit");
             const currentTime = new Date().getTime();
             const oneDay = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
 
             if (!lastVisit || (currentTime - lastVisit) > oneDay) {
-                let views = localStorage.getItem("viewCount") || 0;
-                views++;
-                localStorage.setItem("viewCount", views);
-                localStorage.setItem("lastVisit", currentTime); // Store last visit time
+                fetch("http://localhost:3000/track-view")
+                    .then(() => localStorage.setItem("lastVisit", currentTime))
+                    .catch(error => console.error("❌ Error tracking view:", error));
             }
-
-            document.getElementById("view-counter").innerText = "Views: " + localStorage.getItem("viewCount");
         });
     </script>
 
