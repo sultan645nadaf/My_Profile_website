@@ -13,28 +13,21 @@ app.get('/', (req, res) => {
     res.send('✅ Server is running! Use /track-view or /get-views');
 });
 
-// Get the client's IP address
-const getClientIP = (req) => {
-    return req.headers['x-forwarded-for'] || req.socket.remoteAddress;
-};
-
-// API to track unique views
+// API to track total views
 app.get('/track-view', (req, res) => {
-    const ip = getClientIP(req);
-
-    const sql = 'INSERT IGNORE INTO views (ip_address) VALUES (?)';
-    db.query(sql, [ip], (err, result) => {
+    const sql = 'UPDATE views SET total_views = total_views + 1';
+    db.query(sql, (err, result) => {
         if (err) {
-            console.error('❌ Error inserting view:', err);
+            console.error('❌ Error updating view count:', err);
             return res.status(500).send('Server error');
         }
         res.send('View recorded');
     });
 });
 
-// API to get total unique views
+// API to get total views
 app.get('/get-views', (req, res) => {
-    const sql = 'SELECT COUNT(*) AS total_views FROM views';
+    const sql = 'SELECT total_views FROM views';
     db.query(sql, (err, result) => {
         if (err) {
             console.error('❌ Error fetching views:', err);

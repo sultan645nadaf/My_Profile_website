@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("preloader").classList.add("hide-preloader");
     }, 1200);
 
-    // Fetch the total unique views from the backend
+    // Fetch the total views from the backend
     fetch("http://localhost:3000/get-views")
         .then(response => response.json())
         .then(data => {
@@ -59,14 +59,7 @@ document.addEventListener("DOMContentLoaded", function () {
         })
         .catch(error => console.error("❌ Error fetching views:", error));
 
-    // Send a request to track the current user's view (only once per day)
-    const lastVisit = localStorage.getItem("lastVisit");
-    const currentTime = new Date().getTime();
-    const oneDay = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
-
-    if (!lastVisit || (currentTime - lastVisit) > oneDay) {
-        fetch("http://localhost:3000/track-view")
-            .then(() => localStorage.setItem("lastVisit", currentTime))
-            .catch(error => console.error("❌ Error tracking view:", error));
-    }
+    // Track every visit
+    fetch("http://localhost:3000/track-view")
+        .catch(error => console.error("❌ Error tracking view:", error));
 });
