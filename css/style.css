@@ -213,3 +213,50 @@ header p {
     transform: translateX(50px);
     opacity: 1;
 }
+
+.card {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    border-radius: 16px;
+    display: inline-block;
+    margin-top: 20px;
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 5px 15px rgba(0, 255, 255, 0.2);
+    transition: all 0.4s ease-in-out;
+    max-width: 90%;
+    width: 600px;
+}
+
+@media (max-width: 768px) {
+    .card {
+        width: 90%;
+        padding: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    .card {
+        width: 95%;
+        padding: 10px;
+    }
+}
+
+/* Typing Effect Styles */
+#typing-text {
+    font-size: 1.2rem;
+    font-family: 'Courier New', monospace;
+    color: white;
+    white-space: pre-wrap; /* Allows text to wrap properly */
+    overflow: hidden;
+    display: block;
+    max-width: 100%;
+    text-align: center;
+    padding: 10px;
+}
+
+@keyframes blinkCursor {
+    50% {
+        border-color: transparent;
+    }
+}

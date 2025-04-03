@@ -83,6 +83,23 @@ document.addEventListener("DOMContentLoaded", function () {
     // Track Page View with Fallback
     fetch("http://localhost:3000/track-view")
         .catch(error => console.error("❌ Error tracking view:", error));
+
+    // Typing Animation for Current Project
+    const typingText = document.getElementById("typing-text");
+    if (typingText) {
+        const projectDescription = "Working on a new project Dental Defect detection with Deeplearning.Will be avilable soon.";
+        let index = 0;
+
+        function typeEffect() {
+            if (index < projectDescription.length) {
+                typingText.textContent += projectDescription.charAt(index);
+                index++;
+                setTimeout(typeEffect, 100);
+            }
+        }
+
+        typeEffect();
+    }
 });
 
 // Moving Colorful Rectangles Background Effect
