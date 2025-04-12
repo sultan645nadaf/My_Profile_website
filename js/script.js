@@ -108,6 +108,7 @@ function createRectangle() {
     rect.classList.add("moving-rectangle");
     rect.style.top = Math.random() * window.innerHeight + "px";
     rect.style.left = "-50px"; // Start from the left side
+    rect.style.zIndex = "-2"; // Ensure it stays behind content
     rect.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
     
     document.body.appendChild(rect);
@@ -134,5 +135,5 @@ function createRectangle() {
     });
 }
 
-// Generate rectangles at a faster intervaland 
+// Generate rectangles at a faster interval
 setInterval(createRectangle, 500);

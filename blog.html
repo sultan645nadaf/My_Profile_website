@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Futuristic Blog</title>
+    <link rel="stylesheet" href="css/blog.css" />
+</head>
+<body>
+    <div id="particles-js"></div>
+
+    <header>
+        <h1>🚀 Sultan's Futuristic Blog</h1>
+        <p class="tagline">Where innovation meets creativity</p>
+    </header>
+
+    <main>
+        <section id="blog-list">
+            <!-- Blog posts will be dynamically loaded here -->
+        </section>
+
+        <section id="blog-form">
+            <h2>Admin Login</h2>
+            <div id="login-form">
+                <input type="password" id="admin-pass" placeholder="Enter passcode" />
+                <button onclick="checkAccess()">Login</button>
+            </div>
+
+            <div id="post-form" style="display: none;">
+                <h2>Post a New Blog</h2>
+                <form id="new-post-form">
+                    <input type="text" id="blog-title" placeholder="Title" required />
+                    <textarea id="blog-content" placeholder="Your futuristic thoughts..." required></textarea>
+                    <button type="submit">Post</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Sultan. All rights reserved.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+    <script src="js/blog.js"></script>
+</body>
+</html>
